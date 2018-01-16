@@ -40,14 +40,27 @@ def depoint(img):   #input: gray image
                 pixdata[x,y] = 255
     return img
 
-def ocr_img(image):
+def ocr_img(image,type):
 
     # 切割题目和选项位置，左上角坐标和右下角坐标,自行测试分辨率
-    question_im = image.crop((50, 350, 1000, 560)) # 坚果 pro1
-    choices_im = image.crop((75, 535, 990, 1150))
-    # question = image.crop((75, 315, 1167, 789)) # iPhone 7P
+    if type==1:
+        question_im = image.crop((80, 300, 1000, 450)) #冲顶大会
+        choices_im = image.crop((75, 460, 1000, 900))
+        #print("show img")
+        #question_im.show()
+        #choices_im.show()
+    elif type==2:
+        question_im = image.crop((150, 300, 1000, 475)) #芝士超人
+        choices_im = image.crop((100, 510, 980, 1050))
+        #print("show img")
+        #question_im.show()
+        #choices_im.show()
+    else:
+        question_im = image.crop((70, 250, 1000, 550)) #西瓜
+        choices_im = image.crop((140, 620, 990, 1100))
+    
 
-    # 边缘增强滤波,不一定适用
+    #边缘增强滤波,不一定适用
     #question_im = question_im.filter(ImageFilter.EDGE_ENHANCE)
     #choices_im = choices_im.filter(ImageFilter.EDGE_ENHANCE)
 
